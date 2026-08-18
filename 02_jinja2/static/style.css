@@ -1,0 +1,16 @@
+body {
+  min-height: 100vh;
+  background: #f5f7fb;
+}
+
+.table th {
+  color: #334155;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.card {
+  border-radius: 1rem;
+  overflow: hidden;
+}

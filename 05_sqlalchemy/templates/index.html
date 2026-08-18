@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block titulo %}Livros | Biblioteca{% endblock %}
+
+{% block conteudo %}
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+      <h1 class="h2 mb-1">Acervo da biblioteca</h1>
+      <p class="text-secondary mb-0">Lista completa dos livros cadastrados.</p>
+    </div>
+  </div>
+
+  <div class="card border-0 shadow-sm">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th>ISBN</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Editora</th>
+            <th>Ano de publicação</th>
+            <th>Quantidade</th>
+            <th class="text-end">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for livro in livros %}
+            <tr>
+              <td>{{ livro.isbn }}</td>
+              <td class="fw-semibold">{{ livro.titulo }}</td>
+              <td>{{ livro.autor }}</td>
+              <td>{{ livro.editora }}</td>
+              <td>{{ livro.ano_publicacao }}</td>
+              <td>{{ livro.quantidade }}</td>
+              <td class="text-end text-nowrap">
+                <a class="btn btn-sm btn-outline-primary" href="{{ url_for('editar_livro', livro_id=livro.id) }}">Editar</a>
+                <form class="d-inline" method="post" action="{{ url_for('excluir_livro', livro_id=livro.id) }}" onsubmit="return confirm('Excluir este livro?')">
+                  <button class="btn btn-sm btn-outline-danger" type="submit">Excluir</button>
+                </form>
+              </td>
+            </tr>
+          {% else %}
+            <tr>
+              <td colspan="7" class="text-center py-5 text-secondary">Nenhum livro cadastrado.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
